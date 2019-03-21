@@ -22,22 +22,29 @@ class App extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:5000/api/prisons')
+      // .get('http://localhost:5000/api/prisons')
+      // .then((res) => {
+      //   this.setState({ prisons: [...res.data]})
+      // .catch(err => {
+      //   console.log(err)
+      // })
+      .get('http://localhost:5000/api/prisoners')
       .then((res) => {
-        this.setState({ prisons: [...res.data]})
-        return axios.get('http://localhost:5000/api/prisoners')
+        this.setState({ prisoners: [...res.data]})
       })
-      .then(res => this.setState({ prisoners: [...res.data]}))
-
-      .catch(err => console.log(err));
-  }
-
+      .catch(err => {
+        console.log(err)
+      })
+    }//)
+//} 
+  
+ 
   
 
   addPrison = (e, prison) => {
     e.preventDefault();
     axios
-      .post('http://localhost:5000/', prison)
+      .post('http://localhost:5000/api.prisons', prison)
       .then(res => {
         this.setState({
           prisons: [...res.data, prison]
@@ -72,7 +79,7 @@ class App extends Component {
         />
 
       <Route path="/private"
-          render={props => <Admin  {...this.state}/> }
+          render={props => <Admin {...props} {...this.state}/> }
       />
       
       </div>
