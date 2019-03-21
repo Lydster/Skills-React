@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import PrisonList from './components/PrisonList'
 import Login from './components/Login'
+import PrisonForm from './components/PrisonForm'
 
 import './App.css';
 
@@ -33,9 +34,9 @@ class App extends Component {
       .post('http://localhost:5000/', prison)
       .then(res => {
         this.setState({
-          prisons: res.data
+          prisons: [...res.data]
        }) 
-       this.props.history.push("/prison-list")
+       this.props.history.push("/")
       })
       .catch(err => {
         console.log(err);
@@ -49,21 +50,23 @@ class App extends Component {
         <nav>
           <div className="nav-links">
             <NavLink className='nav-a' exact to="/">Home</NavLink>
-            <NavLink className='nav-a' exact to="/login">Login</NavLink>
-            <NavLink className='nav-a' to="/:id">Institutions</NavLink>
+            <NavLink className='nav-a' to="/login">Login</NavLink>
+            <NavLink className='nav-a' to="/private">Institutions</NavLink>
 
           </div>
           <h1 className="main-header">Prison Employment Connection</h1>
         </nav>
       <Route exact path="/" 
-      render={props => (
-        <PrisonList {...props} prisons={this.state.prisons}/>
-      )}
-  />
-      <Route
-           path="/login"
+        render={props => (<PrisonList {...props} prisons={this.state.prisons}/>)}
+      />
+
+      <Route path="/login"
           render={props => <Login {...props}  />}
         />
+
+      <Route path="/private"
+          render={props => <PrisonForm {...props} /> }
+      />
       </div>
       </>
     );

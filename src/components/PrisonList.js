@@ -11,7 +11,7 @@ const PrisonList = (props) => {
         <div className="prisonlist-wrapper">
             {props.prisons.map(prison => (
                 <div >
-                    <Prison prison={prison}/>
+                    <Prison prison={prison} key={prison.id}/>
                 </div>
             ))}
         </div>

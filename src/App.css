@@ -25,15 +25,13 @@
   color: lightcoral;
 }
 
-
-.each-prison{
-  width: 200px;
-  height: 300px;
-  border: 1px solid white;
-}
-
 .prison-wrapper{
   border: 1px solid white;
-  width: 200px;
+  width: 400px;
   height: 200px;
+}
+
+.prisonlist-wrapper {
+  display: flex;
+  justify-content: space-around;
 }
