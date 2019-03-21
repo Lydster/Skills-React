@@ -13,7 +13,7 @@
 
 import React from 'react';
 import { Route, NavLink } from 'react-router-dom';
-import SinglePrisonPage from './SinglePrisonPage'
+import PrisonerList from './PrisonerList'
 
 
 function Prison(props) {
@@ -37,9 +37,9 @@ function Prison(props) {
           Learn More
         </NavLink>
       
-        {/* <Route exact path="/" 
-        render={props => (<SinglePrisonPage {...props} prisons={props.prisons}/>)}
-      /> */}
+        <Route exact path={`/:${props.prisons.id}`}
+        render={props => (<PrisonerList {...props} prisons={props.prisons} prisoners={props.prisoners}/>)}
+      />
 
       </nav>
    </div>

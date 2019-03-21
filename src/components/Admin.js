@@ -8,7 +8,7 @@ const Admin = (props) => {
     return (
         <>
         <PrisonForm />
-        <PrisonList {...props} prisons={props.prisons}/>
+        <PrisonList {...props} prisons={props.prisons} prisoners={props.prisoners}/>
         </>
     )
 }

@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import PrisonList from './components/PrisonList'
 import Login from './components/Login'
-import PrisonForm from './components/PrisonForm'
+
 import Admin from './components/Admin';
 
 import './App.css';
@@ -15,19 +15,24 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      prisons: []
+      prisons: [],
+      prisoners: []
     }
   }
 
   componentDidMount() {
     axios
       .get('http://localhost:5000/api/prisons')
-      // .then(res => {
-      //   console.log(res.data)
-      // })
-      .then(res => this.setState({ prisons: [...res.data]}))
+      .then((res) => {
+        this.setState({ prisons: [...res.data]})
+        return axios.get('http://localhost:5000/api/prisoners')
+      })
+      .then(res => this.setState({ prisoners: [...res.data]}))
+
       .catch(err => console.log(err));
   }
+
+  
 
   addPrison = (e, prison) => {
     e.preventDefault();
@@ -47,6 +52,7 @@ class App extends Component {
   render() {
     return (
       <>
+      {console.log(this.state)}
       <div className="App">
         <nav>
           <div className="nav-links">
@@ -58,7 +64,7 @@ class App extends Component {
           <h1 className="main-header">Prison Employment Connection</h1>
         </nav>
       <Route exact path="/" 
-        render={props => (<PrisonList {...props} prisons={this.state.prisons}/>)}
+        render={props => (<PrisonList {...props} prisons={this.state.prisons} />)}
       />
 
       <Route path="/login"
@@ -66,7 +72,7 @@ class App extends Component {
         />
 
       <Route path="/private"
-          render={props => <Admin {...props} prisons={this.state.prisons} /> }
+          render={props => <Admin  {...this.state}/> }
       />
       
       </div>
