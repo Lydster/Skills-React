@@ -1,16 +1,15 @@
-import React from 'react';
+import React from "react";
 
-import PrisonList from './PrisonList';
-import PrisonForm from './PrisonForm';
+import PrisonList from "./PrisonList";
+import PrisonForm from "./PrisonForm";
 
-
-const Admin = (props) => {
-    return (
-        <>
-        <PrisonForm />
-        <PrisonList {...props} prisons={props.prisons} prisoners={props.prisoners}/>
-        </>
-    )
-}
+const Admin = props => {
+	return (
+		<>
+			<PrisonForm />
+			<PrisonList {...props} />
+		</>
+	);
+};
 
 export default Admin;
