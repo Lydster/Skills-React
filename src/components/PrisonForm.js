@@ -1,35 +1,39 @@
 import React from "react";
-
+import PrisonList from './PrisonList'
 
 class PrisonForm extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            prison: {
                 id: '',
                 location: '',
                 population: '',
                 zipcode: ''
         }
     }
+}
 
     changeHandler = e => {
         e.persist();
         this.setState(prevState => ({
             
-            ...prevState.obj,
+            ...prevState.prison,
             [e.target.name]: e.target.value
         
         }))
     }
 
     handleSubmit = e => {
-        this.props.addPrison(e, this.state.obj);
+        this.props.addPrison(e, this.state.prison);
         this.setState({
+            prison: {
                 id: '',
                 location: '',
                 population: '',
                 zipcode: ''
+            }
             
         })
     }
@@ -38,6 +42,7 @@ class PrisonForm extends React.Component {
     render() {
         return (
           <div>
+            
             <h2>Add Your Institution</h2>
             <form onSubmit={this.handleSubmit}>
               <input
@@ -66,8 +71,11 @@ class PrisonForm extends React.Component {
               </button>
             </form>
           </div>
-        );
+        )
       }
     }
+
+
+
  
     export default PrisonForm

@@ -6,6 +6,7 @@ import axios from 'axios';
 import PrisonList from './components/PrisonList'
 import Login from './components/Login'
 import PrisonForm from './components/PrisonForm'
+import Admin from './components/Admin';
 
 import './App.css';
 
@@ -34,7 +35,7 @@ class App extends Component {
       .post('http://localhost:5000/', prison)
       .then(res => {
         this.setState({
-          prisons: [...res.data]
+          prisons: [...res.data, prison]
        }) 
        this.props.history.push("/")
       })
@@ -65,8 +66,9 @@ class App extends Component {
         />
 
       <Route path="/private"
-          render={props => <PrisonForm {...props} /> }
+          render={props => <Admin {...props} prisons={this.state.prisons} /> }
       />
+      
       </div>
       </>
     );

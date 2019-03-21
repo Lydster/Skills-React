@@ -13,6 +13,7 @@
 
 import React from 'react';
 import { Route, NavLink } from 'react-router-dom';
+import SinglePrisonPage from './SinglePrisonPage'
 
 
 function Prison(props) {
@@ -28,15 +29,17 @@ function Prison(props) {
     <div className="prison-wrapper">
       <div className="prison-header">
         <div className="item-title-wrapper">
-          <h4>{props.prison.location}</h4>
+          <h4>{props.prisons.location}</h4>
         </div>
       </div>
       <nav className="item-sub-nav">
-        <NavLink to={`/:${props.prison.id}`}>
+        <NavLink to={`/:${props.prisons.id}`}>
           Learn More
         </NavLink>
-        
-     
+      
+        {/* <Route exact path="/" 
+        render={props => (<SinglePrisonPage {...props} prisons={props.prisons}/>)}
+      /> */}
 
       </nav>
    </div>
