@@ -6,13 +6,14 @@ import {
   NavLink
 } from "react-router-dom";
 import axios from "axios";
-
+import jwtdecode from "jwt-decode";
 import PrisonList from "./components/PrisonList";
 import PrisonerList from "./components/PrisonerList";
 
 // Auth components
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
+import PrivateRoute from "./components/auth/PrivateRoute";
 
 import Admin from "./components/Admin";
 
@@ -23,7 +24,8 @@ class App extends Component {
     super();
     this.state = {
       prisons: [],
-      prisoners: []
+      prisoners: [],
+      prison: null
     };
   }
 
@@ -46,7 +48,11 @@ class App extends Component {
     return axios
       .post("https://damp-everglades-96876.herokuapp.com/api/auth/login", creds)
       .then(res => {
-        console.log(res.data);
+        localStorage.setItem("token", res.data.token);
+        console.log(res.data.token);
+        const token = localStorage.getItem("token");
+        const decoded = jwtdecode(token);
+        console.log(decoded);
       })
       .catch(err => {
         console.log(err);
@@ -65,6 +71,12 @@ class App extends Component {
       .catch(err => {
         console.log(err);
       });
+  };
+
+  setPrison = prison => {
+    this.setState({
+      prison
+    });
   };
 
   render() {
@@ -108,7 +120,7 @@ class App extends Component {
             render={props => <Login login={this.loginUser} {...props} />}
           />
 
-          <Route
+          <PrivateRoute
             path="/private"
             render={props => <Admin {...props} {...this.state} />}
           />

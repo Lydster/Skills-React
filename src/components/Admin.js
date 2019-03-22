@@ -1,15 +1,15 @@
 import React from "react";
 
-import PrisonList from "./PrisonList";
+import PrisonerList from "./PrisonList";
 import PrisonForm from "./PrisonForm";
 
 const Admin = props => {
-	return (
-		<>
-			<PrisonForm />
-			<PrisonList {...props} />
-		</>
-	);
+  return (
+    <>
+      <PrisonForm />
+      <PrisonerList {...props} />
+    </>
+  );
 };
 
 export default Admin;
