@@ -26,18 +26,6 @@ class App extends Component {
 		};
 	}
 
-	componentDidMount() {
-		axios
-			.get("https://damp-everglades-96876.herokuapp.com/api/prisons")
-			.then(res => {
-				this.setState({ prisons: [...res.data] });
-			})
-
-			.catch(err => {
-				console.log(err);
-			});
-	}
-
 	addPrison = (e, prison) => {
 		e.preventDefault();
 		axios
@@ -56,15 +44,14 @@ class App extends Component {
 			});
 	};
 
-	addPrison = (e, prison) => {
-		e.preventDefault();
-		axios
-			.post("http://localhost:5000/", prison)
+	loginUser = creds => {
+		return axios
+			.post(
+				"https://damp-everglades-96876.herokuapp.com/api/auth/login",
+				creds
+			)
 			.then(res => {
-				this.setState({
-					prisons: [...res.data, prison]
-				});
-				this.props.history.push("/");
+				console.log(res.data);
 			})
 			.catch(err => {
 				console.log(err);
@@ -104,7 +91,9 @@ class App extends Component {
 
 					<Route
 						path="/login"
-						render={props => <Login {...props} />}
+						render={props => (
+							<Login login={this.loginUser} {...props} />
+						)}
 					/>
 
 					<Route
