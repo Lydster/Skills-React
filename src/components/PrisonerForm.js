@@ -1,5 +1,6 @@
 import React from "react";
 import PrisonList from "./PrisonList";
+import { Input, Button } from "../styledComps";
 
 class PrisonerForm extends React.Component {
   constructor(props) {
@@ -38,30 +39,30 @@ class PrisonerForm extends React.Component {
       <div>
         <h2>Add Your Prisoner</h2>
         <form onSubmit={this.handleSubmit}>
-          <input
+          <Input
             type="text"
             name="name"
             placeholder="name"
             value={this.state.prisoner.name}
             onChange={this.changeHandler}
           />
-          <input
+          <Input
             type="text"
             name="id_number"
             placeholder="id_number"
             value={this.state.prisoner.id_number}
             onChange={this.changeHandler}
           />
-          <input
+          <Input
             type="text"
             name="skills"
             placeholder="skills"
             value={this.state.prisoner.skills}
             onChange={this.changeHandler}
           />
-          <button className="md-button" onClick={this.handleSubmit}>
+          <Button className="md-button" onClick={this.handleSubmit}>
             Add Prisoner
-          </button>
+          </Button>
         </form>
       </div>
     );
