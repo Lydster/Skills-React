@@ -21,8 +21,6 @@ class PrisonList extends React.Component {
 	render() {
 		return (
             <>
-            <h1 className="main-header">Prison Employment Connection</h1>
-            {/* <div className="prisonlistwrapper" style = {styles.displayFlex}> */}
             <FlexDisplay>
 				{this.state.prisons.map(prison => (
                     <Prison prisons={prison} key={prison.id} />

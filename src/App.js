@@ -75,7 +75,7 @@ class App extends Component {
 								Institutions
 							</NavLink>
 						</div>
-						
+            <h1 className="main-header">Prison Employment Connection</h1>
 					</nav>
 					<Route
 						exact
