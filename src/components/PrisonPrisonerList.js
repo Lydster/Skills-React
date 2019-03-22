@@ -7,7 +7,7 @@ const PrisonPrisonerList = props => {
     <div>
       <h1>Prisoner List</h1>
       {props.prisoners.map(prisoner => {
-        return <Prisoner prisoners={prisoner} />;
+        return <Prisoner prisoners={prisoner} key={prisoner.id} />;
       })}
     </div>
   );
