@@ -2,6 +2,8 @@ import React from "react";
 import Prison from "./Prison";
 import Axios from "axios";
 
+import {FlexDisplay} from '../styledComps'
+
 class PrisonList extends React.Component {
 	state = {
 		prisons: []
@@ -18,14 +20,15 @@ class PrisonList extends React.Component {
 	}
 	render() {
 		return (
-			<div className="prisonlist-wrapper">
-				{console.log(this.state.prisons)}
+            <>
+            <h1 className="main-header">Prison Employment Connection</h1>
+            {/* <div className="prisonlistwrapper" style = {styles.displayFlex}> */}
+            <FlexDisplay>
 				{this.state.prisons.map(prison => (
-					<div>
-						<Prison prisons={prison} key={prison.id} />
-					</div>
-				))}
-			</div>
+                    <Prison prisons={prison} key={prison.id} />
+                ))}
+            </FlexDisplay>
+            </>
 		);
 	}
 }

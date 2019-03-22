@@ -10,6 +10,7 @@ import axios from "axios";
 import PrisonList from "./components/PrisonList";
 import PrisonerList from "./components/PrisonerList";
 
+
 // Auth components
 import Login from "./components/auth/Login";
 
@@ -74,9 +75,7 @@ class App extends Component {
 								Institutions
 							</NavLink>
 						</div>
-						<h1 className="main-header">
-							Prison Employment Connection
-						</h1>
+						
 					</nav>
 					<Route
 						exact
