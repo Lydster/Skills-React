@@ -3,6 +3,10 @@ import jwtdecode from "jwt-decode";
 import { Route, Redirect } from "react-router-dom";
 
 class PrivateRoute extends React.Component {
+  state = {
+    prison: null
+  };
+
   componentDidMount() {
     if (localStorage.getItem("token")) {
       const token = localStorage.getItem("token").toString();
@@ -10,16 +14,23 @@ class PrivateRoute extends React.Component {
       if (Date.now() / 1000 > decoded.exp) {
         return localStorage.removeItem("token");
       }
-      return this.props.setPrison(decoded.subject);
+      console.log(decoded.subject);
+      console.log(this.state.prison);
+      this.setState({ prison: decoded.subject });
+      console.log(this.state.prison);
     }
   }
   render() {
-    const { component: Component, token, ...rest } = this.props;
+    const { component: Admin, ...rest } = this.props;
     return (
       <Route
         {...rest}
         render={props =>
-          token ? <Component {...props} /> : <Redirect to="/login" />
+          this.state.prison !== null ? (
+            <Admin {...props} />
+          ) : (
+            <Redirect to="/login" />
+          )
         }
       />
     );

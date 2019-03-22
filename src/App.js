@@ -24,8 +24,7 @@ class App extends Component {
     super();
     this.state = {
       prisons: [],
-      prisoners: [],
-      prison: null
+      prisoners: []
     };
   }
 
@@ -49,10 +48,6 @@ class App extends Component {
       .post("https://damp-everglades-96876.herokuapp.com/api/auth/login", creds)
       .then(res => {
         localStorage.setItem("token", res.data.token);
-        console.log(res.data.token);
-        const token = localStorage.getItem("token");
-        const decoded = jwtdecode(token);
-        console.log(decoded);
       })
       .catch(err => {
         console.log(err);
@@ -71,12 +66,6 @@ class App extends Component {
       .catch(err => {
         console.log(err);
       });
-  };
-
-  setPrison = prison => {
-    this.setState({
-      prison
-    });
   };
 
   render() {
