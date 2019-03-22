@@ -12,11 +12,13 @@ class PrisonerList extends React.Component {
   componentDidMount() {
     axios
       .get(
-        `https://damp-everglades-96876.herokuapp.com/api/prisons/${
+        `http://localhost:5000/api/prisons/${
           this.props.match.params.id
         }/prisoners`
       )
+
       .then(res => {
+        console.log(res.data);
         this.setState({ prisoners: res.data });
       })
 

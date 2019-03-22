@@ -18,14 +18,14 @@
 .nav-a {
   text-decoration: none;
   color: white;
-  padding: 20px
+  padding: 10px 20px;
 }
 
 .nav-a:hover {
   color: lightcoral;
 }
 
-.prison-wrapper{
+.prison-wrapper {
   border: 1px solid white;
   width: 400px;
   height: 200px;
@@ -34,4 +34,10 @@
 .prisonlist-wrapper {
   display: flex;
   justify-content: space-around;
+}
+
+.login-container {
+  width: 400px;
+  margin: 0 auto;
+  padding: 20px;
 }

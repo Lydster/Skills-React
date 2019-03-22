@@ -1,6 +1,7 @@
 import React from "react";
 import PrisonList from "./PrisonList";
-import { Input, Button } from "../styledComps";
+//import { Input, Button } from "../styledComps";
+import { Input, Button } from "react-materialize";
 
 class PrisonerForm extends React.Component {
   constructor(props) {
