@@ -39,9 +39,6 @@ function Prison(props) {
         <NavLink to={`/prisons/${props.prisons.id}`}>
           Learn More
         </NavLink>
-      
-        
-
       </nav>
    </div>
   );

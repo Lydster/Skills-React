@@ -60,9 +60,7 @@ class App extends Component {
             <NavLink className='nav-a' exact to="/">Home</NavLink>
             <NavLink className='nav-a' to="/login">Login</NavLink>
             <NavLink className='nav-a' to="/private">Institutions</NavLink>
-
           </div>
-          <h1 className="main-header">Prison Employment Connection</h1>
         </nav>
       <Route exact path="/" 
         render={props => (<PrisonList {...props} prisons={this.state.prisons} />)}

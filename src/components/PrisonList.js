@@ -24,6 +24,7 @@ class PrisonList extends React.Component {
     render() {
     return (
         <div className="prisonlist-wrapper">
+        <h1 className="main-header">Prison Employment Connection</h1>
         {console.log(this.state.prisons)}
             {this.state.prisons.map(prison => (
                 <div >
