@@ -9,7 +9,9 @@ import axios from "axios";
 
 import PrisonList from "./components/PrisonList";
 import PrisonerList from "./components/PrisonerList";
-import Login from "./components/Login";
+
+// Auth components
+import Login from "./components/auth/Login";
 
 import Admin from "./components/Admin";
 
