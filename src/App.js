@@ -20,29 +20,6 @@ import Admin from "./components/Admin";
 import "./App.css";
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      prisons: [],
-      prisoners: []
-    };
-  }
-
-  addPrison = (e, prison) => {
-    e.preventDefault();
-    axios
-      .post("https://damp-everglades-96876.herokuapp.com/api/prisons", prison)
-      .then(res => {
-        this.setState({
-          prisons: [...res.data, prison]
-        });
-        this.props.history.push("/");
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
   loginUser = creds => {
     return axios
       .post("https://damp-everglades-96876.herokuapp.com/api/auth/login", creds)
@@ -89,13 +66,7 @@ class App extends Component {
             </div>
             <h1 className="main-header">Prison Employment Connection</h1>
           </nav>
-          <Route
-            exact
-            path="/"
-            render={props => (
-              <PrisonList {...props} prisons={this.state.prisons} />
-            )}
-          />
+          <Route exact path="/" render={props => <PrisonList {...props} />} />
 
           <Route
             path="/register"

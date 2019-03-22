@@ -1,6 +1,7 @@
 import React from "react";
 import jwtdecode from "jwt-decode";
 import { Route, Redirect } from "react-router-dom";
+import Admin from "../Admin";
 
 class PrivateRoute extends React.Component {
   state = {
@@ -21,13 +22,13 @@ class PrivateRoute extends React.Component {
     }
   }
   render() {
-    const { component: Admin, ...rest } = this.props;
+    const { render: Component, ...rest } = this.props;
     return (
       <Route
         {...rest}
         render={props =>
           this.state.prison !== null ? (
-            <Admin {...props} />
+            <Component {...props} prison={this.state.prison} />
           ) : (
             <Redirect to="/login" />
           )
