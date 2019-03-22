@@ -5,7 +5,7 @@ import Prisoner from "./Prisoner";
 const PrisonPrisonerList = props => {
   return (
     <div>
-      <h1>Prisoner List</h1>
+      {console.log(props)}
       {props.prisoners.map(prisoner => {
         return (
           <Prisoner

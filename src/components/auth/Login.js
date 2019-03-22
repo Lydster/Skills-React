@@ -12,6 +12,11 @@ class Login extends React.Component {
     }
   };
 
+  componentDidMount() {
+    if (localStorage.getItem("token"))
+      return this.props.history.push("/private");
+  }
+
   handleChange = e => {
     this.setState({
       credentials: {
@@ -24,9 +29,7 @@ class Login extends React.Component {
   login = e => {
     e.preventDefault();
 
-    this.props
-      .login(this.state.credentials)
-      .then(() => this.props.history.push("/private"));
+    this.props.login(this.state.credentials);
   };
 
   render() {

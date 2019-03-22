@@ -37,8 +37,8 @@ class PrisonerForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>Add Your Prisoner</h2>
+      <div className="add-container">
+        <h2>Add a Prisoner</h2>
         <form onSubmit={this.handleSubmit}>
           <Input
             type="text"

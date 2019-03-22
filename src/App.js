@@ -25,6 +25,7 @@ class App extends Component {
       .post("http://localhost:5000/api/auth/login", creds)
       .then(res => {
         localStorage.setItem("token", res.data.token);
+        this.props.history.push("/private");
       })
       .catch(err => {
         console.log(err);
@@ -44,24 +45,38 @@ class App extends Component {
       });
   };
 
+  logOut = () => {
+    localStorage.removeItem("token");
+  };
+
   render() {
     return (
       <>
         <div className="App">
           <nav>
             <div className="nav-links">
-              <NavLink className="nav-a" exact to="/">
-                Home
-              </NavLink>
-              <NavLink className="nav-a" to="/login">
-                Login
-              </NavLink>
-              <NavLink className="nav-a" to="/register">
-                Register
-              </NavLink>
-              <NavLink className="nav-a" to="/private">
-                Institution
-              </NavLink>
+              <span>
+                <NavLink className="nav-a" exact to="/">
+                  Home
+                </NavLink>
+                {localStorage.getItem("token") ? (
+                  <NavLink className="nav-a" to="/" onClick={this.logOut}>
+                    Logout
+                  </NavLink>
+                ) : (
+                  <span>
+                    <NavLink className="nav-a" to="/login">
+                      Login
+                    </NavLink>
+                    <NavLink className="nav-a" to="/register">
+                      Register
+                    </NavLink>
+                  </span>
+                )}
+                <NavLink className="nav-a" to="/private">
+                  Institution
+                </NavLink>
+              </span>
             </div>
             <h1 className="main-header" />
           </nav>

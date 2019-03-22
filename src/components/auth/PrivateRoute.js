@@ -15,10 +15,7 @@ class PrivateRoute extends React.Component {
       if (Date.now() / 1000 > decoded.exp) {
         return localStorage.removeItem("token");
       }
-      console.log(decoded.subject);
-      console.log(this.state.prison);
       this.setState({ prison: decoded.subject });
-      console.log(this.state.prison);
     }
   }
   render() {
@@ -27,7 +24,7 @@ class PrivateRoute extends React.Component {
       <Route
         {...rest}
         render={props =>
-          this.state.prison !== null ? (
+          localStorage.getItem("token") ? (
             <Component {...props} prison={this.state.prison} />
           ) : (
             <Redirect to="/login" />

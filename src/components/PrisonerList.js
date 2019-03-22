@@ -31,7 +31,6 @@ class PrisonerList extends React.Component {
     return (
       <div className="prisoner-wrapper">
         {console.log(this.state)}
-        <h2>Prisoner List</h2>
         <FlexDisplay>
           {this.state.prisoners.map(prisoner => (
             <div>
