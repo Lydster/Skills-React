@@ -9,6 +9,7 @@ import Login from './components/Login'
 import Admin from './components/Admin';
 
 import './App.css';
+import PrisonerList from './components/PrisonerList';
 
 
 class App extends Component {
@@ -20,31 +21,24 @@ class App extends Component {
     }
   }
 
+
   componentDidMount() {
     axios
-      // .get('http://localhost:5000/api/prisons')
-      // .then((res) => {
-      //   this.setState({ prisons: [...res.data]})
-      // .catch(err => {
-      //   console.log(err)
-      // })
-      .get('http://localhost:5000/api/prisoners')
-      .then((res) => {
-        this.setState({ prisoners: [...res.data]})
-      })
-      .catch(err => {
-        console.log(err)
-      })
-    }//)
-//} 
-  
- 
+        .get("https://damp-everglades-96876.herokuapp.com/api/prisons")
+        .then(res => {
+            this.setState({ prisons: [...res.data] });
+        })
+
+        .catch(err => {
+            console.log(err);
+        });
+}
   
 
   addPrison = (e, prison) => {
     e.preventDefault();
     axios
-      .post('http://localhost:5000/api.prisons', prison)
+      .post('https://damp-everglades-96876.herokuapp.com/api/prisons', prison)
       .then(res => {
         this.setState({
           prisons: [...res.data, prison]
@@ -81,6 +75,10 @@ class App extends Component {
       <Route path="/private"
           render={props => <Admin {...props} {...this.state}/> }
       />
+
+      <Route path="/prisons/:id"
+          render={props => <PrisonerList {...props}/>} exact
+          />
       
       </div>
       </>

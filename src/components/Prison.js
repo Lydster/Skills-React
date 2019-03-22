@@ -17,6 +17,9 @@ import PrisonerList from './PrisonerList'
 
 
 function Prison(props) {
+
+
+  
 //   const prison = props.prison.find(
 //     thing => `${thing.id}` === props.match.params.id
 //   );
@@ -33,13 +36,11 @@ function Prison(props) {
         </div>
       </div>
       <nav className="item-sub-nav">
-        <NavLink to={`/:${props.prisons.id}`}>
+        <NavLink to={`/prisons/${props.prisons.id}`}>
           Learn More
         </NavLink>
       
-        <Route exact path={`/:${props.prisons.id}`}
-        render={props => (<PrisonerList {...props} prisons={props.prisons} prisoners={props.prisoners}/>)}
-      />
+        
 
       </nav>
    </div>
