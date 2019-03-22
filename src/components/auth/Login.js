@@ -1,6 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
 
+import {Input, Button} from '../../styledComps'
 class Login extends React.Component {
 	state = {
 		credentials: {
@@ -30,21 +31,21 @@ class Login extends React.Component {
 		return (
 			<div>
 				<form onSubmit={this.login}>
-					<input
+					<Input
 						type="text"
 						name="location"
 						value={this.state.credentials.location}
 						onChange={this.handleChange}
 						placeholder="location"
 					/>
-					<input
+					<Input
 						type="password"
 						name="password"
 						value={this.state.credentials.password}
 						onChange={this.handleChange}
 						placeholder="password"
 					/>
-					<button>Login</button>
+					<Button>Login</Button>
 				</form>
 			</div>
 		);

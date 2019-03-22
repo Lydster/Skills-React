@@ -2,9 +2,11 @@ import React from "react";
 import { Route, NavLink } from "react-router-dom";
 import PrisonerList from "./PrisonerList";
 
+import {Card} from '../styledComps'
+
 function Prison(props) {
 	return (
-		<div className="prison-wrapper">
+		<Card>
 			<div className="prison-header">
 				<div className="item-title-wrapper">
 					<h4>{props.prisons.location}</h4>
@@ -15,7 +17,7 @@ function Prison(props) {
 					Learn More
 				</NavLink>
 			</nav>
-		</div>
+    </Card>
 	);
 }
 

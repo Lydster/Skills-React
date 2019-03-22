@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 import Prisoner from "./Prisoner";
 
+import {FlexDisplay} from '../styledComps'
+
 class PrisonerList extends React.Component {
 	state = {
 		prisoners: []
@@ -28,6 +30,7 @@ class PrisonerList extends React.Component {
 			<div className="prisoner-wrapper">
 				{console.log(this.state)}
 				<h2>Prisoner List</h2>
+				<FlexDisplay>
 				{this.state.prisoners.map(prisoner => (
 					<div>
 						<Prisoner
@@ -36,6 +39,7 @@ class PrisonerList extends React.Component {
 						/>
 					</div>
 				))}
+				</FlexDisplay>
 			</div>
 		);
 	}
