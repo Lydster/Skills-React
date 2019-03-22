@@ -8,6 +8,7 @@ import {
 import axios from "axios";
 
 import PrisonList from "./components/PrisonList";
+import PrisonerList from "./components/PrisonerList";
 import Login from "./components/Login";
 
 import Admin from "./components/Admin";
@@ -18,22 +19,40 @@ class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			prisons: [{ name: "hello" }],
-			prisoners: [{ name: "hello2" }]
+			prisons: [],
+			prisoners: []
 		};
 	}
 
 	componentDidMount() {
 		axios
-			.get("http://localhost:5000/api/prisons")
+			.get("https://damp-everglades-96876.herokuapp.com/api/prisons")
 			.then(res => {
 				this.setState({ prisons: [...res.data] });
-				return axios.get("http://localhost:5000/api/prisoners");
 			})
-			.then(res => this.setState({ prisoners: [...res.data] }))
 
-			.catch(err => console.log(err));
+			.catch(err => {
+				console.log(err);
+			});
 	}
+
+	addPrison = (e, prison) => {
+		e.preventDefault();
+		axios
+			.post(
+				"https://damp-everglades-96876.herokuapp.com/api/prisons",
+				prison
+			)
+			.then(res => {
+				this.setState({
+					prisons: [...res.data, prison]
+				});
+				this.props.history.push("/");
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	};
 
 	addPrison = (e, prison) => {
 		e.preventDefault();
@@ -53,7 +72,6 @@ class App extends Component {
 	render() {
 		return (
 			<>
-				{console.log(this.state.prisoners)}
 				<div className="App">
 					<nav>
 						<div className="nav-links">
@@ -71,37 +89,32 @@ class App extends Component {
 							Prison Employment Connection
 						</h1>
 					</nav>
-					<Router>
-						<Switch>
-							<Route
-								exact
-								path="/"
-								render={props => (
-									<PrisonList
-										{...props}
-										prisons={this.state.prisons}
-									/>
-								)}
+					<Route
+						exact
+						path="/"
+						render={props => (
+							<PrisonList
+								{...props}
+								prisons={this.state.prisons}
 							/>
+						)}
+					/>
 
-							<Route
-								path="/login"
-								render={props => <Login {...props} />}
-							/>
+					<Route
+						path="/login"
+						render={props => <Login {...props} />}
+					/>
 
-							<Route
-								path="/private"
-								exact
-								render={props => (
-									<Admin
-										{...props}
-										prisoners={this.state.prisoners}
-										prisons={this.state.prisons}
-									/>
-								)}
-							/>
-						</Switch>
-					</Router>
+					<Route
+						path="/private"
+						render={props => <Admin {...props} {...this.state} />}
+					/>
+
+					<Route
+						path="/prisons/:id"
+						exact
+						render={props => <PrisonerList {...props} />}
+					/>
 				</div>
 			</>
 		);
