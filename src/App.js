@@ -22,7 +22,7 @@ import "./App.css";
 class App extends Component {
   loginUser = creds => {
     return axios
-      .post("https://damp-everglades-96876.herokuapp.com/api/auth/login", creds)
+      .post("https://pskills.herokuapp.com/api/auth/login", creds)
       .then(res => {
         localStorage.setItem("token", res.data.token);
       })
@@ -33,10 +33,7 @@ class App extends Component {
 
   registerUser = creds => {
     return axios
-      .post(
-        "https://damp-everglades-96876.herokuapp.com/api/auth/register",
-        creds
-      )
+      .post("https://pskills.herokuapp.com/api/auth/register", creds)
       .then(res => {
         console.log(res.data);
       })

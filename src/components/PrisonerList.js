@@ -12,7 +12,7 @@ class PrisonerList extends React.Component {
   componentDidMount() {
     axios
       .get(
-        `https://damp-everglades-96876.herokuapp.com/api/prisons/${
+        `https://pskills.herokuapp.com/api/prisons/${
           this.props.match.params.id
         }/prisoners`
       )
