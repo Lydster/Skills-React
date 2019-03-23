@@ -6,9 +6,10 @@ import PrisonPrisonerList from "./PrisonPrisonerList";
 import axios from "axios";
 
 class Admin extends React.Component {
-  state = {
-    prisoners: []
-  };
+	state = {
+		prisoners: []
+	};
+
 
   componentDidMount() {
     this.fetchCurrentPrisoners();
@@ -88,6 +89,7 @@ class Admin extends React.Component {
       </>
     );
   }
+
 }
 
 export default Admin;

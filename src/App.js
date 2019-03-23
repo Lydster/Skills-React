@@ -22,7 +22,9 @@ import "./App.css";
 class App extends Component {
   loginUser = creds => {
     return axios
-      .post("http://localhost:5000/api/auth/login", creds)
+
+      .post("https://pskills.herokuapp.com/api/auth/login", creds)
+
       .then(res => {
         localStorage.setItem("token", res.data.token);
         this.props.history.push("/private");
@@ -35,7 +37,8 @@ class App extends Component {
   registerUser = creds => {
     console.log(creds);
     return axios
-      .post("http://localhost:5000/api/auth/register", creds)
+
+      .post("https://pskills.herokuapp.com/api/auth/register", creds)
       .then(res => {
         console.log(res.data);
         //localStorage.setItem("token", res.data.token);
@@ -78,7 +81,9 @@ class App extends Component {
                 </NavLink>
               </span>
             </div>
+
             <h1 className="main-header" />
+
           </nav>
           <Route exact path="/" render={props => <PrisonList {...props} />} />
 

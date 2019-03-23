@@ -1,12 +1,12 @@
 import React from "react";
 import jwtdecode from "jwt-decode";
 import { Route, Redirect } from "react-router-dom";
-import Admin from "../Admin";
 
 class PrivateRoute extends React.Component {
-  state = {
-    prison: null
-  };
+	state = {
+		prison: null
+	};
+
 
   componentDidMount() {
     if (localStorage.getItem("token")) {
@@ -33,6 +33,7 @@ class PrivateRoute extends React.Component {
       />
     );
   }
+
 }
 
 export default PrivateRoute;

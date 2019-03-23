@@ -9,16 +9,16 @@ class PrisonerList extends React.Component {
     prisoners: []
   };
 
+
   componentDidMount() {
     axios
       .get(
-        `http://localhost:5000/api/prisons/${
+        `https://pskills.herokuapp.com/api/prisons/${
           this.props.match.params.id
         }/prisoners`
       )
-
       .then(res => {
-        console.log(res.data);
+
         this.setState({ prisoners: res.data });
       })
 
@@ -29,6 +29,7 @@ class PrisonerList extends React.Component {
 
   render() {
     return (
+
       <div>
         {console.log(this.state)}
         <div className="prisoner-cards">
@@ -42,6 +43,7 @@ class PrisonerList extends React.Component {
             </div>
           ))}
         </div>
+
       </div>
     );
   }
