@@ -10,7 +10,7 @@ class PrisonList extends React.Component {
   };
 
   componentDidMount() {
-    Axios.get("http://localhost:5000/api/prisons")
+    Axios.get("https://pskills.herokuapp.com/api/prisons")
       .then(res => {
         this.setState({ prisons: [...res.data] });
       })

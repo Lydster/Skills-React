@@ -21,7 +21,11 @@ class Admin extends React.Component {
 
   fetchCurrentPrisoners = () => {
     axios
-      .get(`http://localhost:5000/api/prisons/${this.props.prison}/prisoners`)
+      .get(
+        `https://pskills.herokuapp.com/api/prisons/${
+          this.props.prison
+        }/prisoners`
+      )
       .then(res => {
         this.setState({ prisoners: res.data });
       })
@@ -32,7 +36,7 @@ class Admin extends React.Component {
 
   addPrisoner = prisoner => {
     axios
-      .post("http://localhost:5000/api/prisoners", prisoner, {
+      .post("https://pskills.herokuapp.com/api/prisoners", prisoner, {
         "Content-Type": "application/json",
         headers: { authorization: localStorage.getItem("token") }
       })
@@ -48,17 +52,21 @@ class Admin extends React.Component {
 
   updatePrisoner = (id, updatedPrisoner) => {
     axios
-      .put(`http://localhost:5000/api/prisoners/${id}`, updatedPrisoner, {
-        "Content-Type": "application/json",
-        headers: { authorization: localStorage.getItem("token") }
-      })
+      .put(
+        `https://pskills.herokuapp.com/api/prisoners/${id}`,
+        updatedPrisoner,
+        {
+          "Content-Type": "application/json",
+          headers: { authorization: localStorage.getItem("token") }
+        }
+      )
       .then(res => console.log(res.data))
       .catch(err => console.log(err));
   };
 
   deletePrisoner = prisonerId => {
     axios
-      .delete(`http://localhost:5000/api/prisoners/${prisonerId}`, {
+      .delete(`https://pskills.herokuapp.com//api/prisoners/${prisonerId}`, {
         "Content-Type": "application/json",
         headers: { authorization: localStorage.getItem("token") }
       })

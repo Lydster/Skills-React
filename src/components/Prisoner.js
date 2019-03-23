@@ -1,18 +1,31 @@
 import React from "react";
-
+import SkillsList from "./SkillsList";
 import { Button } from "react-materialize";
 
 //import { Card, Input } from "../styledComps";
 import { Card, Input, Icon, Col } from "react-materialize";
+import Axios from "axios";
 class Prisoner extends React.Component {
   state = {
     isEditing: false,
     prisoner: {
       name: this.props.prisoners.name,
       id_number: this.props.prisoners.id_number,
-      skills: null
+      skills: []
     }
   };
+
+  componentDidMount() {
+    Axios.get("https://pskills.herokuapp.com/api/skills")
+      .then(res => {
+        const filtered = res.data.filter(
+          skill => skill.prisoner_id === this.props.prisoners.id
+        );
+        this.setState({ skills: filtered });
+        console.log(filtered);
+      })
+      .catch(err => console.log(err));
+  }
 
   edit = () => {
     this.setState({
@@ -53,7 +66,7 @@ class Prisoner extends React.Component {
   // </Card>
 
   render() {
-    console.log(this.props);
+    console.log(this.state.prisoner.skills);
     return (
       <div className="prisoner-cards">
         <div className="prisoner-card">
@@ -62,7 +75,9 @@ class Prisoner extends React.Component {
               <div className="prisoner-text">
                 <h3>{this.state.prisoner.name}</h3>
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgyX2YvrpAXbXLAkffPL_0t9P_U8JbtTc5OU6lEINTkhSPnFXW" />
-                <p>skills: skill</p>
+                {this.state.prisoner.skills && (
+                  <SkillsList skills={this.state.prisoner.skills} />
+                )}
                 {this.props.match.url === "/private" ? (
                   <span>
                     <Button onClick={this.deletePrisoner}>Delete</Button>
@@ -90,13 +105,7 @@ class Prisoner extends React.Component {
                     value={this.state.prisoner.id_number}
                     onChange={this.changeHandler}
                   />
-                  <Input
-                    type="text"
-                    name="skills"
-                    placeholder="skills"
-                    value={this.state.prisoner.skills}
-                    onChange={this.changeHandler}
-                  />
+
                   <Button>update</Button>
                   <Button onClick={this.edit}>cancel</Button>
                 </form>

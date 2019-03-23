@@ -10,8 +10,7 @@ class PrisonerForm extends React.Component {
     this.state = {
       prisoner: {
         name: "",
-        id_number: "",
-        skills: { name: "" }
+        id_number: ""
       }
     };
   }
@@ -20,19 +19,6 @@ class PrisonerForm extends React.Component {
     e.persist();
     this.setState({
       prisoner: { ...this.state.prisoner, [e.target.name]: e.target.value }
-    });
-  };
-
-  skillsHandler = e => {
-    e.persist();
-    this.setState({
-      prisoner: {
-        ...this.state.prisoner,
-        skills: {
-          ...this.state.prisoner.skills,
-          [e.target.name]: e.target.value
-        }
-      }
     });
   };
 
@@ -49,7 +35,6 @@ class PrisonerForm extends React.Component {
   };
 
   render() {
-    console.log(this.state.prisoner.skills.name);
     return (
       <div className="add-container">
         <h2>Add a Prisoner</h2>
@@ -68,13 +53,7 @@ class PrisonerForm extends React.Component {
             value={this.state.prisoner.id_number}
             onChange={this.changeHandler}
           />
-          <Input
-            type="text"
-            name="name"
-            placeholder="skills"
-            value={this.state.prisoner.skills.name}
-            onChange={this.skillsHandler}
-          />
+
           <Button className="md-button" onClick={this.handleSubmit}>
             Add Prisoner
           </Button>
