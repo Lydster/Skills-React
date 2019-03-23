@@ -21,7 +21,7 @@ class PrisonList extends React.Component {
   render() {
     return (
       <>
-        <div className="card-contain">
+        <div>
           {this.state.prisons.map(prison => (
             <Prison prisons={prison} key={prison.id} />
           ))}

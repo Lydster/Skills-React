@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, NavLink } from "react-router-dom";
-import PrisonerList from "./PrisonerList";
+//import PrisonerList from "./PrisonerList";
 
 //import { Card } from "../styledComps";
 import { Card } from "react-materialize";

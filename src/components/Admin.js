@@ -46,6 +46,16 @@ class Admin extends React.Component {
       });
   };
 
+  updatePrisoner = (id, updatedPrisoner) => {
+    axios
+      .put(`http://localhost:5000/api/prisoners/${id}`, updatedPrisoner, {
+        "Content-Type": "application/json",
+        headers: { authorization: localStorage.getItem("token") }
+      })
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
+  };
+
   deletePrisoner = prisonerId => {
     axios
       .delete(`http://localhost:5000/api/prisoners/${prisonerId}`, {
@@ -65,12 +75,15 @@ class Admin extends React.Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <>
         <PrisonerForm addPrisoner={this.addPrisoner} />
         <PrisonPrisonerList
+          match={this.props.match}
           prisoners={this.state.prisoners}
           deletePrisoner={this.deletePrisoner}
+          updatePrisoner={this.updatePrisoner}
         />
       </>
     );

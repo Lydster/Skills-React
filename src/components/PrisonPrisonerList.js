@@ -12,6 +12,8 @@ const PrisonPrisonerList = props => {
             prisoners={prisoner}
             key={prisoner.id}
             deletePrisoner={props.deletePrisoner}
+            updatePrisoner={props.updatePrisoner}
+            match={props.match}
           />
         );
       })}

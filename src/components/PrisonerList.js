@@ -34,7 +34,11 @@ class PrisonerList extends React.Component {
         <div className="prisoner-cards">
           {this.state.prisoners.map(prisoner => (
             <div>
-              <Prisoner prisoners={prisoner} key={prisoner.id} />
+              <Prisoner
+                prisoners={prisoner}
+                key={prisoner.id}
+                match={this.props.match}
+              />
             </div>
           ))}
         </div>
