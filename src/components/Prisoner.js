@@ -15,14 +15,17 @@ class Prisoner extends React.Component {
     }
   };
 
-  componentDidMount() {
+  componentWillMount() {
     Axios.get("https://pskills.herokuapp.com/api/skills")
       .then(res => {
         const filtered = res.data.filter(
           skill => skill.prisoner_id === this.props.prisoners.id
         );
-        this.setState({ skills: filtered });
-        console.log(filtered);
+        this.setState({
+          ...this.state,
+          prisoner: { ...this.state.prisoner, skills: filtered }
+        });
+        console.log(res.data);
       })
       .catch(err => console.log(err));
   }
@@ -53,17 +56,21 @@ class Prisoner extends React.Component {
     });
   };
 
-  //   <Col m={6} s={12}>
-  //   <Card className='blue-grey darken-1' textClassName='white-text' title='Card title' actions={[<a href='#'>This is a link</a>]}>
-  //   I am a very simple card.
-  //   </Card>
-  // </Col>
-
-  //   <Card className='small'
-  //   header={<CardTitle image='img/sample-1.jpg'>Card Title</CardTitle>}
-  //   actions={[<a href='#'>This is a Link</a>]}>
-  //   I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
-  // </Card>
+  handleDeleteSkill = id => {
+    Axios.delete(`https://pskills.herokuapp.com/api/skills/${id}`)
+      .then(res => {
+        const filtered = this.state.prisoner.skills.filter(skill => {
+          console.log(id);
+          console.log(skill.id);
+          return id !== skill.id;
+        });
+        this.setState({
+          ...this.state,
+          prisoner: { ...this.state.prisoner, skills: filtered }
+        });
+      })
+      .catch(err => console.log(err));
+  };
 
   render() {
     console.log(this.state.prisoner.skills);
@@ -75,9 +82,12 @@ class Prisoner extends React.Component {
               <div className="prisoner-text">
                 <h3>{this.state.prisoner.name}</h3>
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgyX2YvrpAXbXLAkffPL_0t9P_U8JbtTc5OU6lEINTkhSPnFXW" />
-                {this.state.prisoner.skills && (
-                  <SkillsList skills={this.state.prisoner.skills} />
-                )}
+
+                <SkillsList
+                  skills={this.state.prisoner.skills}
+                  handleDeleteSkill={this.handleDeleteSkill}
+                />
+
                 {this.props.match.url === "/private" ? (
                   <span>
                     <Button onClick={this.deletePrisoner}>Delete</Button>

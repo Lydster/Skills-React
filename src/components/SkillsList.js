@@ -6,7 +6,12 @@ class SkillsList extends React.Component {
     return (
       <div>
         {this.props.skills.map(skill => {
-          return <Skill {...skill} />;
+          return (
+            <Skill
+              {...skill}
+              handleDeleteSkill={this.props.handleDeleteSkill}
+            />
+          );
         })}
         {console.log(this.props)}
       </div>
