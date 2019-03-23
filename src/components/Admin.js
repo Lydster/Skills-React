@@ -11,6 +11,15 @@ class Admin extends React.Component {
   };
 
   componentDidMount() {
+    this.fetchCurrentPrisoners();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.prison !== this.props.prison)
+      return this.fetchCurrentPrisoners();
+  }
+
+  fetchCurrentPrisoners = () => {
     axios
       .get(`http://localhost:5000/api/prisons/${this.props.prison}/prisoners`)
       .then(res => {
@@ -19,7 +28,7 @@ class Admin extends React.Component {
       .catch(err => {
         console.log(err);
       });
-  }
+  };
 
   addPrisoner = prisoner => {
     axios

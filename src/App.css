@@ -13,6 +13,7 @@
 .nav-links {
   display: flex;
   justify-content: flex-end;
+  background-color: #50a39a;
 }
 
 .nav-a {
@@ -22,7 +23,7 @@
 }
 
 .nav-a:hover {
-  color: lightcoral;
+  color: gray;
 }
 
 .prison-wrapper {
@@ -52,4 +53,37 @@
   width: 400px;
   margin: 0 auto;
   padding: 20px;
+}
+
+.prisoner-cards {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.prisoner-card {
+  width: 400px;
+  margin: 10px;
+}
+
+.prisoner-text {
+  color: white;
+}
+
+.card-contain {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.item-sub-nav {
+  background-color: #50a39a;
+  height: 200px;
+  padding: 25px;
+}
+
+.card {
+  width: 400px;
+  color: #5c5c5c;
+  margin: 20px;
 }

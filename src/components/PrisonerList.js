@@ -29,15 +29,15 @@ class PrisonerList extends React.Component {
 
   render() {
     return (
-      <div className="prisoner-wrapper">
+      <div>
         {console.log(this.state)}
-        <FlexDisplay>
+        <div className="prisoner-cards">
           {this.state.prisoners.map(prisoner => (
             <div>
               <Prisoner prisoners={prisoner} key={prisoner.id} />
             </div>
           ))}
-        </FlexDisplay>
+        </div>
       </div>
     );
   }

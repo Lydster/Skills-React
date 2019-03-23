@@ -21,11 +21,11 @@ class PrisonList extends React.Component {
   render() {
     return (
       <>
-        <FlexDisplay>
+        <div className="card-contain">
           {this.state.prisons.map(prison => (
             <Prison prisons={prison} key={prison.id} />
           ))}
-        </FlexDisplay>
+        </div>
       </>
     );
   }

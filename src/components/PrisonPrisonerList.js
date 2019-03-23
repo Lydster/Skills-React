@@ -4,7 +4,7 @@ import Prisoner from "./Prisoner";
 
 const PrisonPrisonerList = props => {
   return (
-    <div>
+    <div className="prisoner-cards">
       {console.log(props)}
       {props.prisoners.map(prisoner => {
         return (

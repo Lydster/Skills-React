@@ -3,7 +3,7 @@ import React from "react";
 import { Button } from "react-materialize";
 
 //import { Card, Input } from "../styledComps";
-import { Card, Input } from "react-materialize";
+import { Card, Input, Icon, Col } from "react-materialize";
 class Prisoner extends React.Component {
   state = {
     isEditing: false,
@@ -46,45 +46,51 @@ class Prisoner extends React.Component {
 
   render() {
     return (
-      <Card className="blue-grey darken-1">
-        {console.log(this.props)}
-        {!this.state.isEditing ? (
-          <div>
-            <h3>{this.props.prisoners.name}</h3>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAM1BMVEXMzMzPz8+vr6/Ly8vAwMCRkZHDw8PGxsaWlpaenp6Tk5PFxcW2trahoaG+vr66urqoqKhkZDrBAAAFEklEQVR4nO2d23akOAxFLdn4Ar79/9e2ZFNAJZNK90Nq6Jmzs0IokImOZcvmRWUMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgRyHh5emLdvTZ+Nt2b6f1NRZn9XTjuPZtXLWcluJeNCPX45qy/Wjc0hqb/VmX/4wWl6RO6XlaYlrScI/1NL6QuMU1prjwB+MmsmPMP+/3b0NpzSG0pQRDbel+62uWUeYkrCGv5csBR33tPtSkui7GoawuuDWFd2p4jR9RII7e2KSO2SJBtH3ZSGNzeLpPrkNxSBprqtIfF2PpJOmfebwL0xnKiycXOw2xlUKJetoi754GZhXr+TH+prHZpPnFWCLr9Wr8OvhvJzj1nHr0VOPoeSdhCWn6P/8oaQSnHMGxfrRrz8ZUxvi0Pd5HoeIdr92KtyNXaFi2GbxwKnRxtVSXfs2Sm8tR5u/FmNIwsH29lUJa1jVtMlLXsVDYhcmPdCMzszyMLK9siwzgS7siDeXCxZhi3zPxeyV8gyqMbGUu2vmRJf+M1YNKOmLmYuqxP7VL0lAUudOY5upBvNxqRTRkc5R5eMbQfI6hhniNz4sAUUsyd/8xhvdSqJlmqSJhzMMg89DPqSVOX0al7Hc+zi5ZF/hqvCuUIX2feVjbiEtbmqT7Mdo0l26fcqns0mS2nn77fAR8u+bScrdcKstE1b9N18O0r4dtX+LMuR5qqoxp5aNdnuuGPdZDM9fDqMK3lO6jMI9JNPY0c5tiiuRV2aZoLHiph2WOvcW0PT7WuT3Y9zQPYxHeSK/ybRTKrEueaFt1dLG4K2NVE6YciXyKp11aNtPPIEpIG2n43JOxj0n2d+nVlv3dyD4rjncL7XR5zSjLTJh9iXLajrdFXiRmYT1cl/3Bmso6g3Uxloxb4tkRdyBwEl9HjjFVnCtTVegiNx85PywyjFXnmVxzkhelKeVibOUVM/KNXi0Eu3n/8Cicp9a7i5/WbWMZcJfht/l58dnYeu/vthgCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG6Oz+fxL8M59zs15twowOc+1EwMo9Bb8G48ZTxo89IRj/t2L/u2OS2b7rUyY3h3UUKKzN3PcvJn0WuaB3pUwiY6FNLDRH/ZjYuNS+c6itTakoiO6pgsVGNqF8woRGx5eXNhSfGGciYu4jtbcsZ2olp6MNRz8pa1EqHthadC8dTRxhKQWS3UkVHx8yRyIBF7KszyxBBM6PJYzlS40fb28qdTobgiEnKzUcNUu/S6+MmishkJjhzLVJi875teyjwUZhmeeSjUYsONbQ9nDGmv4+tGBcZCKXTL7d3lwMcoDWV4YHvtuVXizhzFz/0uay/UY5RKuFw3rHNqWKrBVJhMqcP4K4XEtZh3F3ilJDlCXCHxQIaR7+yJ2Tuv0R135XYyTwrFW97rQjsicodCyrGeCuVqJZ2vW7eji9IonP5+hfoPa5EfGZMSm6LzpqrXeiezyxJUrmkqjDlrvWQ3C6E+Ms2hkGgco9d+iWRLljQkT+kyPe3oMnq7QjNWOEkQWtrUVeO19m6QKM47tnGWBJi5zlrSLWsV5TkLtWdUaKj7Sd4fSCOFknwMmUe15so5nPf/HZ479vJVJB++N8HMIvTfPOzydSifHvg34FP9uxz+c/7r+gD4H/ELtGoozZ2ClhcAAAAASUVORK5CYII=" />
-            <p>skills: skill</p>
-            <Button onClick={this.deletePrisoner}>Delete</Button>
-            <Button onClick={this.edit}>Edit</Button>
-          </div>
-        ) : (
-          <div>
-            <h2>Edit a Prisoner</h2>
-            <Input
-              type="text"
-              name="name"
-              placeholder="name"
-              value={this.state.prisoner.name}
-              onChange={this.changeHandler}
-            />
-            <Input
-              type="text"
-              name="id_number"
-              placeholder="id_number"
-              value={this.state.prisoner.id_number}
-              onChange={this.changeHandler}
-            />
-            <Input
-              type="text"
-              name="skills"
-              placeholder="skills"
-              value={this.state.prisoner.skills}
-              onChange={this.changeHandler}
-            />
-            <Button>update</Button>
-            <Button onClick={this.edit}>cancel</Button>
-          </div>
-        )}
-      </Card>
+      <div className="prisoner-cards">
+        <div className="prisoner-card">
+          <Card className="blue-grey darken-1">
+            {console.log(this.props)}
+            {!this.state.isEditing ? (
+              <div className="prisoner-text">
+                <h3>{this.props.prisoners.name}</h3>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgyX2YvrpAXbXLAkffPL_0t9P_U8JbtTc5OU6lEINTkhSPnFXW" />
+                <p>skills: skill</p>
+                <Button onClick={this.deletePrisoner}>Delete</Button>
+                <Button onClick={this.edit}>
+                  Edit<Icon>create</Icon>
+                </Button>
+              </div>
+            ) : (
+              <div className="prisoner-text">
+                <h2>Edit a Prisoner</h2>
+                <Input
+                  type="text"
+                  name="name"
+                  placeholder="name"
+                  value={this.state.prisoner.name}
+                  onChange={this.changeHandler}
+                />
+                <Input
+                  type="text"
+                  name="id_number"
+                  placeholder="id_number"
+                  value={this.state.prisoner.id_number}
+                  onChange={this.changeHandler}
+                />
+                <Input
+                  type="text"
+                  name="skills"
+                  placeholder="skills"
+                  value={this.state.prisoner.skills}
+                  onChange={this.changeHandler}
+                />
+                <Button>update</Button>
+                <Button onClick={this.edit}>cancel</Button>
+              </div>
+            )}
+          </Card>
+        </div>
+      </div>
     );
   }
 }
