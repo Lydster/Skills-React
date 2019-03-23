@@ -1,19 +1,31 @@
 import React from "react";
-
-
+import axios from "axios";
 import { Button } from "react-materialize";
-
-//import { Card, Input } from "../styledComps";
 import { Card, Input, Icon, Col } from "react-materialize";
+import Skill from "./Skill";
+
 class Prisoner extends React.Component {
   state = {
     isEditing: false,
-    prisoner: {
-      name: this.props.prisoners.name,
-      id_number: this.props.prisoners.id_number,
-      skills: null
-    }
+    prisoner: {}
   };
+
+  componentDidMount() {
+    axios
+      .get(
+        `https://pskills.herokuapp.com/api/prisoners/${
+          this.props.match.params.id
+        }`
+      )
+
+      .then(res => {
+        console.log(res.data);
+        this.setState({ prisoner: res.data });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 
   edit = () => {
     this.setState({
@@ -55,15 +67,21 @@ class Prisoner extends React.Component {
 
   render() {
     console.log(this.props);
+    console.log(this.state);
     return (
       <div className="prisoner-cards">
+        <h1>{this.state.prisoner.name}</h1>
         <div className="prisoner-card">
           <Card className="blue-grey darken-1">
             {!this.state.isEditing ? (
               <div className="prisoner-text">
                 <h3>{this.state.prisoner.name}</h3>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgyX2YvrpAXbXLAkffPL_0t9P_U8JbtTc5OU6lEINTkhSPnFXW" />
-                <p>skills: skill</p>
+
+                <p>skills: </p>
+                {/* {this.state.prisoner.skills.map(skill => {
+                  <Skill skill={skill} />;
+                })} */}
+
                 {this.props.match.url === "/private" ? (
                   <span>
                     <Button onClick={this.deletePrisoner}>Delete</Button>
@@ -109,6 +127,5 @@ class Prisoner extends React.Component {
     );
   }
 }
-
 
 export default Prisoner;

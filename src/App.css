@@ -8,6 +8,7 @@
   min-height: 100vh;
   font-size: calc(10px + 2vmin);
   color: white;
+  width: 100%;
 }
 
 .nav-links {
@@ -55,6 +56,17 @@
   padding: 20px;
 }
 
+.prisonList {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  max-width: 100%;
+}
+
+.prisonList a {
+  width: 48%;
+}
+
 .prisoner-cards {
   display: flex;
   justify-content: space-around;
@@ -79,11 +91,18 @@
 .item-sub-nav {
   background-color: #50a39a;
   height: 200px;
-  padding: 25px;
 }
 
 .card {
-  width: 400px;
+  width: 100%;
+  max-width: 100%;
   color: #5c5c5c;
-  margin: 20px;
+}
+
+/* black button on prison card */
+
+.card-button {
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }

@@ -3,26 +3,25 @@ import React from "react";
 import { Route, Link } from "react-router-dom";
 import PrisonerList from "./PrisonerList";
 import faker from "faker";
-import { Card } from "../styledComps";
 
-
-//import { Card } from "../styledComps";
 import { Card } from "react-materialize";
 function Prison(props) {
   return (
-
     <Link to={`/prisons/${props.prisons.id}`}>
       <Card>
         <div className="prison-header">
-          <div className="item-title-wrapper prison-card">
-            <h4>{props.prisons.location}</h4>
-            <img src={`${faker.image.imageUrl()}?t=${Date.now()}`} />
-          </div>
+          <h4 className="card-title">{props.prisons.location}</h4>
+          <img
+            className="materialboxed"
+            src={`${faker.image.imageUrl()}?t=${Date.now()}`}
+            width="100%"
+          />
         </div>
-        <nav className="item-sub-nav">Learn More</nav>
+        <button className="card-button waves-effect materialboxed btn-large grey darken-2">
+          Learn More
+        </button>
       </Card>
     </Link>
-
   );
 }
 
