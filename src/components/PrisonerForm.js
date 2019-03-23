@@ -12,7 +12,8 @@ class PrisonerForm extends React.Component {
         name: "",
         id_number: "",
         skills: { name: "" }
-      }
+      },
+      prisons: this.props.prisons
     };
   }
 
@@ -50,6 +51,7 @@ class PrisonerForm extends React.Component {
 
   render() {
     console.log(this.state.prisoner.skills.name);
+    console.log(this.state);
     return (
       <div className="add-container">
         <h2>Add a Prisoner</h2>
@@ -62,7 +64,7 @@ class PrisonerForm extends React.Component {
             onChange={this.changeHandler}
           />
           <Input
-            type="text"
+            type="select"
             name="id_number"
             placeholder="id_number"
             value={this.state.prisoner.id_number}
