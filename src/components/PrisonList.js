@@ -10,7 +10,9 @@ class PrisonList extends React.Component {
   };
 
   componentDidMount() {
+
     Axios.get("https://pskills.herokuapp.com/api/prisons")
+
       .then(res => {
         this.setState({ prisons: [...res.data] });
       })
@@ -21,11 +23,14 @@ class PrisonList extends React.Component {
   render() {
     return (
       <>
-        <FlexDisplay>
+
+        <div>
           {this.state.prisons.map(prison => (
             <Prison prisons={prison} key={prison.id} />
           ))}
-        </FlexDisplay>
+        </div>
+
+
       </>
     );
   }

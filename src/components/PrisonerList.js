@@ -9,6 +9,7 @@ class PrisonerList extends React.Component {
     prisoners: []
   };
 
+
   componentDidMount() {
     axios
       .get(
@@ -17,6 +18,7 @@ class PrisonerList extends React.Component {
         }/prisoners`
       )
       .then(res => {
+
         this.setState({ prisoners: res.data });
       })
 
@@ -27,16 +29,21 @@ class PrisonerList extends React.Component {
 
   render() {
     return (
-      <div className="prisoner-wrapper">
+
+      <div>
         {console.log(this.state)}
-        <h2>Prisoner List</h2>
-        <FlexDisplay>
+        <div className="prisoner-cards">
           {this.state.prisoners.map(prisoner => (
             <div>
-              <Prisoner prisoners={prisoner} key={prisoner.id_number} />
+              <Prisoner
+                prisoners={prisoner}
+                key={prisoner.id}
+                match={this.props.match}
+              />
             </div>
           ))}
-        </FlexDisplay>
+        </div>
+
       </div>
     );
   }

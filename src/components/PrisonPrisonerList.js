@@ -4,10 +4,18 @@ import Prisoner from "./Prisoner";
 
 const PrisonPrisonerList = props => {
   return (
-    <div>
-      <h1>Prisoner List</h1>
+    <div className="prisoner-cards">
+      {console.log(props)}
       {props.prisoners.map(prisoner => {
-        return <Prisoner prisoners={prisoner} />;
+        return (
+          <Prisoner
+            prisoners={prisoner}
+            key={prisoner.id}
+            deletePrisoner={props.deletePrisoner}
+            updatePrisoner={props.updatePrisoner}
+            match={props.match}
+          />
+        );
       })}
     </div>
   );

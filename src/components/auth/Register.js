@@ -1,4 +1,6 @@
 import React from "react";
+//import { Input, Button } from "../../styledComps";
+import { Input, Button } from "react-materialize";
 
 class Register extends React.Component {
   state = {
@@ -9,6 +11,11 @@ class Register extends React.Component {
       zipcode: ""
     }
   };
+
+  componentDidMount() {
+    if (localStorage.getItem("token"))
+      return this.props.history.push("/private");
+  }
 
   handleChange = e => {
     this.setState({
@@ -29,37 +36,37 @@ class Register extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="register-container">
         <form onSubmit={this.register}>
-          <input
+          <Input
             type="text"
             name="location"
             value={this.state.credentials.location}
             onChange={this.handleChange}
             placeholder="location"
           />
-          <input
+          <Input
             type="number"
             name="population"
             value={this.state.credentials.population}
             onChange={this.handleChange}
             placeholder="population"
           />
-          <input
+          <Input
             type="password"
             name="password"
             value={this.state.credentials.password}
             onChange={this.handleChange}
             placeholder="password"
           />
-          <input
+          <Input
             type="number"
             name="zipcode"
             value={this.state.credentials.zipcode}
             onChange={this.handleChange}
             placeholder="zipcode"
           />
-          <button>Login</button>
+          <Button>Register</Button>
         </form>
       </div>
     );
