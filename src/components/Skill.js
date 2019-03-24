@@ -40,7 +40,6 @@ class Skill extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <div>
         {!this.state.isEditing ? (

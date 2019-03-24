@@ -9,22 +9,22 @@ class Prisoner extends React.Component {
   state = {
     isEditing: false,
     prisoner: {
-      name: this.props.prisoners.name,
-      id_number: this.props.prisoners.id_number,
+      name: this.props.prisoners.name ,
+      id_number: this.props.prisoners.id,
       skills: []
     }
   };
 
   componentWillMount() {
+    
     Axios.get(
       `https://pskills.herokuapp.com/api/prisoners/${
-        this.props.prisoners.prison_id
+        this.props.prisoners.id
       }`
     )
       .then(res => {
-        console.log(res.data);
         this.setState({
-          prisoner: { skills: res.data.skills }
+          prisoner: {...this.state.prisoner, skills: res.data.skills }
         });
         console.log(res.data.skills);
       })
@@ -38,7 +38,7 @@ class Prisoner extends React.Component {
   };
 
   changeHandler = e => {
-    e.persist();
+    // e.persist();
     this.setState({
       prisoner: { ...this.state.prisoner, [e.target.name]: e.target.value }
     });
@@ -60,13 +60,15 @@ class Prisoner extends React.Component {
   handleAddSkill = skill => {
     console.log(skill);
     Axios.post("https://pskills.herokuapp.com/api/skills", skill)
-      .then(res =>
+      .then(res =>{
+        console.log(res.data)
         this.setState({
           prisoner: {
             ...this.state.prisoner,
             skills: [...this.state.prisoner.skills, res.data]
           }
         })
+      }
       )
       .catch(err => console.log(err));
   };
@@ -88,7 +90,7 @@ class Prisoner extends React.Component {
   };
 
   render() {
-    console.log(this.state.prisoner.skills);
+    console.log(this.props)
     return (
       <div className="prisoner-cards">
         <div className="prisoner-card">
@@ -101,7 +103,7 @@ class Prisoner extends React.Component {
                 <SkillsList
                   skills={this.state.prisoner.skills}
                   handleDeleteSkill={this.handleDeleteSkill}
-                  prisonerId={this.props.prisoners.prison_id}
+                  prisonerId={this.props.prisoners.id}
                   handleAddSkill={this.handleAddSkill}
                 />
 

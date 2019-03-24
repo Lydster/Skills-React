@@ -12,6 +12,7 @@ class SkillsList extends React.Component {
 
   addSkill = e => {
     e.preventDefault();
+    console.log(this.state.skill)
     this.props.handleAddSkill(this.state.skill);
     this.setState({
       ...this.state.skill,
@@ -27,7 +28,6 @@ class SkillsList extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <div>
         {this.props.skills.map(skill => {

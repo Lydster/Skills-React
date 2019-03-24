@@ -20,6 +20,7 @@ class Admin extends React.Component {
   }
 
   fetchCurrentPrisoners = () => {
+    console.log(this.props)
     axios
       .get(
         `https://pskills.herokuapp.com/api/prisons/${
