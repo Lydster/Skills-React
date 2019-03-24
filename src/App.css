@@ -29,7 +29,7 @@
 .prison-wrapper {
   border: 1px solid white;
   width: 400px;
-  height: 200px;
+  height: 400px;
 }
 
 .prisonlist-wrapper {
@@ -78,7 +78,7 @@
 
 .item-sub-nav {
   background-color: #50a39a;
-  height: 200px;
+  height: 280px;
   padding: 25px;
 }
 
@@ -86,4 +86,9 @@
   width: 400px;
   color: #5c5c5c;
   margin: 20px;
+}
+
+.contact {
+  width: 400px;
+  margin: 0 auto;
 }

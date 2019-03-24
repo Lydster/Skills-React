@@ -6,7 +6,7 @@ class SkillsList extends React.Component {
   state = {
     skill: {
       name: "",
-      prisoner_id: this.props.prisonerId
+      prisoner_id: this.props.prisonersId
     }
   };
 
@@ -14,8 +14,7 @@ class SkillsList extends React.Component {
     e.preventDefault();
     this.props.handleAddSkill(this.state.skill);
     this.setState({
-      ...this.state.skill,
-      name: ""
+      skill: { ...this.state.skill, name: "" }
     });
   };
 
@@ -37,18 +36,21 @@ class SkillsList extends React.Component {
               handleDeleteSkill={this.props.handleDeleteSkill}
               key={this.props.prisonerId}
               id={this.props.prisonerId}
+              match={this.props.match}
             />
           );
         })}
-        <form onSubmit={this.addSkill}>
-          <input
-            value={this.state.skill.name}
-            placeholder="add skill"
-            onChange={this.changeHandler}
-            name="name"
-          />
-          <Button>Add</Button>
-        </form>
+        {this.props.match.url === "/private" && (
+          <form onSubmit={this.addSkill}>
+            <input
+              value={this.state.skill.name}
+              placeholder="add skill"
+              onChange={this.changeHandler}
+              name="name"
+            />
+            <Button>Add</Button>
+          </form>
+        )}
       </div>
     );
   }

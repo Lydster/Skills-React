@@ -46,12 +46,26 @@ class Skill extends React.Component {
         {!this.state.isEditing ? (
           <div>
             {this.state.prisoner.name}
-
-            <span>
-              <button onClick={this.handleEdit}>update</button>
-
-              <button onClick={this.handleDelete}> delete</button>
-            </span>
+            {this.props.match.url === "/private" && (
+              <div>
+                <span>
+                  <Button onClick={this.handleEdit} waves="light">
+                    Update
+                    <Icon tiny left>
+                      create
+                    </Icon>
+                  </Button>
+                </span>
+                <span>
+                  <Button onClick={this.handleDelete} waves="light">
+                    Delete
+                    <Icon tiny left>
+                      cancel
+                    </Icon>
+                  </Button>
+                </span>
+              </div>
+            )}
           </div>
         ) : (
           <div>

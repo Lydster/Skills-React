@@ -2,8 +2,6 @@ import React from "react";
 import axios from "axios";
 import Prisoner from "./Prisoner";
 
-import { FlexDisplay } from "../styledComps";
-
 class PrisonerList extends React.Component {
   state = {
     prisoners: []

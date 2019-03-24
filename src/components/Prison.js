@@ -1,8 +1,6 @@
 import React from "react";
 import { Route, NavLink } from "react-router-dom";
-//import PrisonerList from "./PrisonerList";
-
-//import { Card } from "../styledComps";
+import faker from "faker";
 import { Card } from "react-materialize";
 function Prison(props) {
   return (
@@ -15,9 +13,13 @@ function Prison(props) {
             </div>
 
             <nav className="item-sub-nav">
-              <img
+              {/* <img
                 src="http://www.wrexham.com/wp-content/uploads/2017/02/hmp-berwyn-wrexham-prison-800x380.jpg"
                 width="300"
+              /> */}
+              <img
+                src={`${faker.image.imageUrl()}?t=${Date.now()}`}
+                width="100%"
               />
             </nav>
           </Card>
@@ -28,6 +30,29 @@ function Prison(props) {
 }
 
 export default Prison;
+
+// import faker from "faker";
+
+// import { Card } from "react-materialize";
+// function Prison(props) {
+//   return (
+//     <Link to={`/prisons/${props.prisons.id}`}>
+//       <Card>
+//         <div className="prison-header">
+//           <h4 className="card-title">{props.prisons.location}</h4>
+//           <img
+//             className="materialboxed"
+//             src={`${faker.image.imageUrl()}?t=${Date.now()}`}
+//             width="100%"
+//           />
+//         </div>
+//         <button className="card-button waves-effect materialboxed btn-large grey darken-2">
+//           Learn More
+//         </button>
+//       </Card>
+//     </Link>
+//   );
+// }
 
 // function Prison(props) {
 //   return (

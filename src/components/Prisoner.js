@@ -16,17 +16,18 @@ class Prisoner extends React.Component {
   };
 
   componentWillMount() {
-    Axios.get(
-      `https://pskills.herokuapp.com/api/prisoners/${
-        this.props.prisoners.prison_id
-      }`
-    )
+    Axios.get(`https://pskills.herokuapp.com/api/skills`)
       .then(res => {
-        console.log(res.data);
+        const filtered = res.data.filter(
+          skill => skill.prisoner_id === this.props.prisoners.id
+        );
+
         this.setState({
-          prisoner: { skills: res.data.skills }
+          prisoner: {
+            ...this.state.prisoner,
+            skills: filtered
+          }
         });
-        console.log(res.data.skills);
       })
       .catch(err => console.log(err));
   }
@@ -88,7 +89,7 @@ class Prisoner extends React.Component {
   };
 
   render() {
-    console.log(this.state.prisoner.skills);
+    console.log(this.props);
     return (
       <div className="prisoner-cards">
         <div className="prisoner-card">
@@ -102,7 +103,9 @@ class Prisoner extends React.Component {
                   skills={this.state.prisoner.skills}
                   handleDeleteSkill={this.handleDeleteSkill}
                   prisonerId={this.props.prisoners.prison_id}
+                  prisonersId={this.props.prisoners.id}
                   handleAddSkill={this.handleAddSkill}
+                  match={this.props.match}
                 />
 
                 {this.props.match.url === "/private" ? (

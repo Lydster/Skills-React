@@ -1,14 +1,9 @@
 import React, { Component } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  NavLink
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import axios from "axios";
-import jwtdecode from "jwt-decode";
 import PrisonList from "./components/PrisonList";
 import PrisonerList from "./components/PrisonerList";
+import Contact from "./components/contact/ContactContainer";
 
 // Auth components
 import Login from "./components/auth/Login";
@@ -76,6 +71,9 @@ class App extends Component {
                 <NavLink className="nav-a" to="/private">
                   Institution
                 </NavLink>
+                <NavLink className="nav-a" to="/contact">
+                  Contact
+                </NavLink>
               </span>
             </div>
             <h1 className="main-header" />
@@ -103,6 +101,12 @@ class App extends Component {
             path="/prisons/:id"
             exact
             render={props => <PrisonerList {...props} />}
+          />
+
+          <Route
+            path="/contact"
+            exact
+            render={props => <Contact {...props} {...this.state} />}
           />
         </div>
       </>
