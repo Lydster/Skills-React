@@ -20,6 +20,7 @@ class PrivateRoute extends React.Component {
   }
   render() {
     const { render: Component, ...rest } = this.props;
+    console.log(this.state)
     return (
       <Route
         {...rest}

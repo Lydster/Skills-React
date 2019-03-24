@@ -1,30 +1,33 @@
 import React from "react";
-import axios from "axios";
+import SkillsList from "./SkillsList";
 import { Button } from "react-materialize";
 import { Card, Input, Icon, Col } from "react-materialize";
-import Skill from "./Skill";
 
+import Axios from "axios";
 class Prisoner extends React.Component {
   state = {
     isEditing: false,
-    prisoner: {}
+    prisoner: {
+      name: this.props.prisoners.name ,
+      id_number: this.props.prisoners.id,
+      skills: []
+    }
   };
 
-  componentDidMount() {
-    axios
-      .get(
-        `https://pskills.herokuapp.com/api/prisoners/${
-          this.props.match.params.id
-        }`
-      )
-
+  componentWillMount() {
+    
+    Axios.get(
+      `https://pskills.herokuapp.com/api/prisoners/${
+        this.props.prisoners.id
+      }`
+    )
       .then(res => {
-        console.log(res.data);
-        this.setState({ prisoner: res.data });
+        this.setState({
+          prisoner: {...this.state.prisoner, skills: res.data.skills }
+        });
+        console.log(res.data.skills);
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(err => console.log(err));
   }
 
   edit = () => {
@@ -34,7 +37,7 @@ class Prisoner extends React.Component {
   };
 
   changeHandler = e => {
-    e.persist();
+    // e.persist();
     this.setState({
       prisoner: { ...this.state.prisoner, [e.target.name]: e.target.value }
     });
@@ -53,21 +56,40 @@ class Prisoner extends React.Component {
     });
   };
 
-  //   <Col m={6} s={12}>
-  //   <Card className='blue-grey darken-1' textClassName='white-text' title='Card title' actions={[<a href='#'>This is a link</a>]}>
-  //   I am a very simple card.
-  //   </Card>
-  // </Col>
+  handleAddSkill = skill => {
+    console.log(skill);
+    Axios.post("https://pskills.herokuapp.com/api/skills", skill)
+      .then(res =>{
+        console.log(res.data)
+        this.setState({
+          prisoner: {
+            ...this.state.prisoner,
+            skills: [...this.state.prisoner.skills, res.data]
+          }
+        })
+      }
+      )
+      .catch(err => console.log(err));
+  };
 
-  //   <Card className='small'
-  //   header={<CardTitle image='img/sample-1.jpg'>Card Title</CardTitle>}
-  //   actions={[<a href='#'>This is a Link</a>]}>
-  //   I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
-  // </Card>
+  handleDeleteSkill = id => {
+    Axios.delete(`https://pskills.herokuapp.com/api/skills/${id}`)
+      .then(res => {
+        const filtered = this.state.prisoner.skills.filter(skill => {
+          console.log(id);
+          console.log(skill.id);
+          return id !== skill.id;
+        });
+        this.setState({
+          ...this.state,
+          prisoner: { ...this.state.prisoner, skills: filtered }
+        });
+      })
+      .catch(err => console.log(err));
+  };
 
   render() {
-    console.log(this.props);
-    console.log(this.state);
+    console.log(this.props)
     return (
       <div className="prisoner-cards">
         <h1>{this.state.prisoner.name}</h1>
@@ -76,11 +98,15 @@ class Prisoner extends React.Component {
             {!this.state.isEditing ? (
               <div className="prisoner-text">
                 <h3>{this.state.prisoner.name}</h3>
+      
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgyX2YvrpAXbXLAkffPL_0t9P_U8JbtTc5OU6lEINTkhSPnFXW" />
 
-                <p>skills: </p>
-                {/* {this.state.prisoner.skills.map(skill => {
-                  <Skill skill={skill} />;
-                })} */}
+                <SkillsList
+                  skills={this.state.prisoner.skills}
+                  handleDeleteSkill={this.handleDeleteSkill}
+                  prisonerId={this.props.prisoners.id}
+                  handleAddSkill={this.handleAddSkill}
+                />
 
                 {this.props.match.url === "/private" ? (
                   <span>
@@ -109,13 +135,7 @@ class Prisoner extends React.Component {
                     value={this.state.prisoner.id_number}
                     onChange={this.changeHandler}
                   />
-                  <Input
-                    type="text"
-                    name="skills"
-                    placeholder="skills"
-                    value={this.state.prisoner.skills}
-                    onChange={this.changeHandler}
-                  />
+
                   <Button>update</Button>
                   <Button onClick={this.edit}>cancel</Button>
                 </form>

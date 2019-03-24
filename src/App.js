@@ -43,7 +43,6 @@ class App extends Component {
     return axios
 
       .post("https://pskills.herokuapp.com/api/auth/login", creds)
-
       .then(res => {
         localStorage.setItem("token", res.data.token);
         this.props.history.push("/private");
@@ -56,7 +55,6 @@ class App extends Component {
   registerUser = creds => {
     console.log(creds);
     return axios
-
       .post("https://pskills.herokuapp.com/api/auth/register", creds)
       .then(res => {
         console.log(res.data);
@@ -72,6 +70,7 @@ class App extends Component {
   };
 
   render() {
+    console.log(this.state)
     return (
       <>
         <div className="App">
