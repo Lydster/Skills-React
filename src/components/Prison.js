@@ -8,7 +8,7 @@ function Prison(props) {
   return (
     <div className="card-contain">
       <NavLink to={`/prisons/${props.prisons.id}`}>
-        <div className="card">
+        <div>
           <Card>
             <div className="item-title-wrapper">
               <h4>{props.prisons.location}</h4>

@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Icon, Input } from "react-materialize";
 import Axios from "axios";
-import { EEXIST } from "constants";
 
 class Skill extends React.Component {
   state = {
@@ -41,6 +40,7 @@ class Skill extends React.Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <div>
         {!this.state.isEditing ? (
@@ -48,13 +48,9 @@ class Skill extends React.Component {
             {this.state.prisoner.name}
 
             <span>
-              <Icon tiny>
-                <button onClick={this.handleEdit}>create</button>
-              </Icon>
+              <button onClick={this.handleEdit}>update</button>
 
-              <Icon tiny>
-                <button onClick={this.handleDelete}> cancel</button>
-              </Icon>
+              <button onClick={this.handleDelete}> delete</button>
             </span>
           </div>
         ) : (

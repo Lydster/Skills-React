@@ -66,7 +66,7 @@ class Admin extends React.Component {
 
   deletePrisoner = prisonerId => {
     axios
-      .delete(`https://pskills.herokuapp.com//api/prisoners/${prisonerId}`, {
+      .delete(`https://pskills.herokuapp.com/api/prisoners/${prisonerId}`, {
         "Content-Type": "application/json",
         headers: { authorization: localStorage.getItem("token") }
       })
