@@ -41,7 +41,10 @@ class Prisoner extends React.Component {
   changeHandler = e => {
     e.persist();
     this.setState({
-      prisoner: { ...this.state.prisoner, [e.target.name]: e.target.value }
+      prisoner: {
+        ...this.state.prisoner,
+        [e.target.name]: e.target.value
+      }
     });
   };
 
@@ -89,7 +92,7 @@ class Prisoner extends React.Component {
   };
 
   render() {
-    console.log(this.props);
+    console.log(this.state.prisoner.skills);
     return (
       <div className="prisoner-cards">
         <div className="prisoner-card">
