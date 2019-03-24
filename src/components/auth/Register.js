@@ -9,7 +9,8 @@ class Register extends React.Component {
       population: "",
       password: "",
       zipcode: ""
-    }
+    },
+    prisons: []
   };
 
   componentDidMount() {
@@ -45,6 +46,7 @@ class Register extends React.Component {
             onChange={this.handleChange}
             placeholder="location"
           />
+
           <Input
             type="number"
             name="population"

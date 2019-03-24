@@ -1,8 +1,9 @@
 import React from "react";
-import { Route, NavLink } from "react-router-dom";
-//import PrisonerList from "./PrisonerList";
 
-//import { Card } from "../styledComps";
+import { Route, Link } from "react-router-dom";
+import PrisonerList from "./PrisonerList";
+import faker from "faker";
+
 import { Card } from "react-materialize";
 function Prison(props) {
   return (
@@ -22,8 +23,11 @@ function Prison(props) {
             </nav>
           </Card>
         </div>
-      </NavLink>
-    </div>
+        <button className="card-button waves-effect materialboxed btn-large grey darken-2">
+          Learn More
+        </button>
+      </Card>
+    </Link>
   );
 }
 

@@ -1,9 +1,8 @@
 import React from "react";
 import SkillsList from "./SkillsList";
 import { Button } from "react-materialize";
-
-//import { Card, Input } from "../styledComps";
 import { Card, Input, Icon, Col } from "react-materialize";
+
 import Axios from "axios";
 class Prisoner extends React.Component {
   state = {
@@ -93,11 +92,13 @@ class Prisoner extends React.Component {
     console.log(this.props)
     return (
       <div className="prisoner-cards">
+        <h1>{this.state.prisoner.name}</h1>
         <div className="prisoner-card">
           <Card className="blue-grey darken-1">
             {!this.state.isEditing ? (
               <div className="prisoner-text">
                 <h3>{this.state.prisoner.name}</h3>
+      
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgyX2YvrpAXbXLAkffPL_0t9P_U8JbtTc5OU6lEINTkhSPnFXW" />
 
                 <SkillsList

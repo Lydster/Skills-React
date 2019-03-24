@@ -87,7 +87,10 @@ class Admin extends React.Component {
     console.log(this.props);
     return (
       <>
-        <PrisonerForm addPrisoner={this.addPrisoner} />
+        <PrisonerForm
+          addPrisoner={this.addPrisoner}
+          prisons={this.props.prisons}
+        />
         <PrisonPrisonerList
           match={this.props.match}
           prisoners={this.state.prisoners}

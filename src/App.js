@@ -20,8 +20,28 @@ import Admin from "./components/Admin";
 import "./App.css";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      prisons: []
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get("https://pskills.herokuapp.com/api/prisons")
+
+      .then(res => {
+        this.setState({ prisons: [...res.data] });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
   loginUser = creds => {
     return axios
+
       .post("https://pskills.herokuapp.com/api/auth/login", creds)
       .then(res => {
         localStorage.setItem("token", res.data.token);
@@ -79,14 +99,25 @@ class App extends Component {
                 </NavLink>
               </span>
             </div>
+
             <h1 className="main-header" />
           </nav>
-          <Route exact path="/" render={props => <PrisonList {...props} />} />
+          <Route
+            exact
+            path="/"
+            render={props => (
+              <PrisonList prisons={this.state.prisons} {...props} />
+            )}
+          />
 
           <Route
             path="/register"
             render={props => (
-              <Register register={this.registerUser} {...props} />
+              <Register
+                register={this.registerUser}
+                prisons={this.state.prisons}
+                {...props}
+              />
             )}
           />
 
@@ -97,7 +128,9 @@ class App extends Component {
 
           <PrivateRoute
             path="/private"
-            render={props => <Admin {...props} {...this.state} />}
+            render={props => (
+              <Admin {...props} prisons={this.state.prisons} {...this.state} />
+            )}
           />
 
           <Route

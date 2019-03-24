@@ -47,7 +47,7 @@ class PrisonerForm extends React.Component {
             onChange={this.changeHandler}
           />
           <Input
-            type="text"
+            type="select"
             name="id_number"
             placeholder="id_number"
             value={this.state.prisoner.id_number}
