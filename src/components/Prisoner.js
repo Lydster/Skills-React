@@ -106,6 +106,7 @@ class Prisoner extends React.Component {
 									skills={this.state.prisoner.skills}
 									handleDeleteSkill={this.handleDeleteSkill}
 									prisonerId={this.props.prisoners.prison_id}
+									prisonersId={this.props.prisoners.id}
 									handleAddSkill={this.handleAddSkill}
 								/>
 

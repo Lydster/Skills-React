@@ -6,7 +6,7 @@ class SkillsList extends React.Component {
 	state = {
 		skill: {
 			name: "",
-			prisoner_id: this.props.prisonerId
+			prisoner_id: this.props.prisonersId
 		}
 	};
 
@@ -14,8 +14,10 @@ class SkillsList extends React.Component {
 		e.preventDefault();
 		this.props.handleAddSkill(this.state.skill);
 		this.setState({
-			...this.state.skill,
-			name: ""
+			skill: {
+				...this.state.skill,
+				name: ""
+			}
 		});
 	};
 
@@ -27,7 +29,6 @@ class SkillsList extends React.Component {
 	};
 
 	render() {
-		console.log(this.props);
 		return (
 			<div>
 				{this.props.skills.map(skill => {
